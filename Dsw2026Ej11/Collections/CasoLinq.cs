@@ -18,7 +18,15 @@ namespace Dsw2026Ej11.Collections;
  */
 public class CasoLinq
 {
-    private readonly List<Libro> _libros = [];
+    private readonly List<Libro> _libros;
+    private readonly CultureInfo culturaArg;
+
+    public CasoLinq()
+    {
+        _libros = Libro.CrearLista();
+        culturaArg = new CultureInfo("es-AR");
+        culturaArg.NumberFormat.CurrencySymbol = "$";
+    }
     public Libro? GetPrimero()
     {
         return _libros.OrderBy(libro => libro.Id).FirstOrDefault();
@@ -41,7 +49,7 @@ public class CasoLinq
     }
     public List<string> GetLibros()
     {
-        return _libros.Select(libro => $"{libro.Titulo}: {libro.Precio.ToString("C",new CultureInfo("es-AR"))}").ToList();
+        return _libros.Select(libro => $"{libro.Titulo}: {libro.Precio.ToString("C", culturaArg)}").ToList();
     }
     public Libro? GetMayorPrecio()
     {
