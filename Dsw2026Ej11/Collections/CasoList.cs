@@ -21,7 +21,14 @@ public class CasoList
     }
     public Alumno? BuscarAlumnoPorNombre(string nombre)
     {
-        return _alumnos.FirstOrDefault(a => a.Nombre == nombre);
+        foreach (var alumno in _alumnos)
+        {
+            if (alumno.Nombre.Equals(nombre))
+            {
+                return alumno;
+            }
+        }
+        return null;
     }
     public void EliminarAlumno(Alumno alumno)
     {

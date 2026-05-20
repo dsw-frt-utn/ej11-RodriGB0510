@@ -21,11 +21,11 @@ public class CasoLinq
     private readonly List<Libro> _libros = [];
     public Libro? GetPrimero()
     {
-        return _libros.Where(libro => libro.Id == _libros.Min(primero => primero.Id)).Select(libro => libro).FirstOrDefault();
+        return _libros.OrderBy(libro => libro.Id).FirstOrDefault();
     }
     public Libro? GetUltimo()
     {
-        return _libros.Where(libro => libro.Id == _libros.Max(ultimo => ultimo.Id)).Select(libro => libro).FirstOrDefault();
+        return _libros.OrderByDescending(libro => libro.Id).FirstOrDefault();
     }
     public decimal GetTotalPrecios()
     {
@@ -45,11 +45,11 @@ public class CasoLinq
     }
     public Libro? GetMayorPrecio()
     {
-        return _libros.Where(libro => libro.Precio == _libros.Max(mayor => mayor.Precio)).Select(libro => libro).FirstOrDefault();
+        return _libros.OrderByDescending(libro => libro.Precio).FirstOrDefault();
     }
     public Libro? GetMenorPrecio()
     {
-        return _libros.Where(libro => libro.Precio == _libros.Min(menor => menor.Precio)).Select(libro => libro).FirstOrDefault();
+        return _libros.OrderBy(libro => libro.Precio).FirstOrDefault();
     }
     public List<Libro> GetMayorPromedio()
     {
